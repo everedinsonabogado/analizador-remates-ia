@@ -1,4 +1,3 @@
-```javascript
 const fs = require("fs");
 const pdf = require("pdf-parse");
 
@@ -15,4 +14,3 @@ async function extraerTextoPDF(rutaArchivo){
 module.exports = {
     extraerTextoPDF
 };
-```
