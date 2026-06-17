@@ -28,6 +28,29 @@ app.post("/subir", upload.single("pdf"), async (req, res) => {
   try {
 
 const texto = await extraerTextoPDF(req.file.path);
+const prompt = `
+Eres el abogado Ever Edinson, especialista en remates judiciales en Perú.
+
+Analiza el expediente y elabora un informe dirigido a un inversionista.
+
+No inventes información.
+
+Extrae todas las fechas.
+
+Calcula el tiempo promedio entre resoluciones.
+
+Identifica incidentes procesales.
+
+Determina el nivel de litigiosidad.
+
+Estima el plazo para Auto de Adjudicación.
+
+Estima el plazo para Partes Judiciales.
+
+Finaliza con una recomendación sobre la conveniencia de participar en el remate.
+
+Utiliza lenguaje sencillo.
+`;
 
 const respuesta = await client.responses.create({
 
