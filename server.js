@@ -1,7 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const OpenAI = require("openai");
+const multer = require("multer");
+const { extraerTextoPDF } = require("./services/pdf");
 
+const upload = multer({
+  dest: "uploads/"
+});
 const app = express();
 
 app.use(cors());
