@@ -23,7 +23,25 @@ app.get("/", (req, res) => {
     autor: "Ever Edinson Abogado"
   });
 });
+app.post("/subir", upload.single("pdf"), async (req, res) => {
 
+  try {
+
+    const texto = await extraerTextoPDF(req.file.path);
+
+    res.json({
+      texto: texto
+    });
+
+  } catch (e) {
+
+    res.status(500).json({
+      error: e.message
+    });
+
+  }
+
+});
 app.post("/analizar", async (req, res) => {
 
   try {
