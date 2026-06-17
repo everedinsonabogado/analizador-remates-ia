@@ -1,4 +1,3 @@
-```javascript
 const OpenAI = require("openai");
 const fs = require("fs");
 const path = require("path");
@@ -37,4 +36,3 @@ ${textoExpediente}
 module.exports = {
   analizarExpediente
 };
-```
