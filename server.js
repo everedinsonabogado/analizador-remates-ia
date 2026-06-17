@@ -50,7 +50,7 @@ Estima el plazo para Partes Judiciales.
 Finaliza con una recomendación sobre la conveniencia de participar en el remate.
 
 Utiliza lenguaje sencillo.
-`;
+
 Al finalizar el informe incorpora obligatoriamente una sección denominada:
 
 ## AVISO LEGAL
@@ -64,7 +64,7 @@ Se recomienda complementar este informe con una revisión legal especializada de
 Para asesoría especializada en remates judiciales visite:
 
 [www.everedinsonabogado.com](http://www.everedinsonabogado.com)
-
+`;
 const respuesta = await client.responses.create({
 
     model: "gpt-5.5",
