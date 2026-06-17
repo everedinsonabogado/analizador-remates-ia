@@ -27,11 +27,29 @@ app.post("/subir", upload.single("pdf"), async (req, res) => {
 
   try {
 
-    const texto = await extraerTextoPDF(req.file.path);
+const texto = await extraerTextoPDF(req.file.path);
 
-    res.json({
-      texto: texto
-    });
+const respuesta = await client.responses.create({
+
+    model: "gpt-5.5",
+
+    input: `${prompt}
+
+========================
+
+EXPEDIENTE JUDICIAL
+
+${texto}
+
+========================`
+
+});
+
+res.json({
+
+    informe: respuesta.output_text
+
+});
 
   } catch (e) {
 
