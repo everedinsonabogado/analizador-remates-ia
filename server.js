@@ -16,7 +16,7 @@ const app = express();
 
 app.use(cors());
 app.use(express.json({ limit: "10mb" }));
-
+app.use("/pdf", express.static(path.join(__dirname, "pdf")));
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -86,9 +86,41 @@ ${texto}
 
 });
 
+const informe = respuesta.output_text;
+
+const nombreArchivo = uuidv4() + ".pdf";
+
+const rutaPDF = path.join(__dirname, "pdf", nombreArchivo);
+
+const doc = new PDFDocument({
+    margin: 40
+});
+
+doc.pipe(fs.createWriteStream(rutaPDF));
+
+doc.fontSize(22).text("INFORME DE ANALISIS DE EXPEDIENTE JUDICIAL", {
+    align: "center"
+});
+
+doc.moveDown();
+
+doc.fontSize(11).text(
+    "Generado por Ever Edinson Abogado - Especialista en Remates Judiciales"
+);
+
+doc.moveDown();
+
+doc.fontSize(12).text(informe);
+
+doc.end();
+
 res.json({
 
-    informe: respuesta.output_text
+    informe: informe,
+
+    pdf:
+      "https://analizador-remates-ia-1.onrender.com/pdf/" +
+      nombreArchivo
 
 });
 
