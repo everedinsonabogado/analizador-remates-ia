@@ -2,6 +2,12 @@ const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+const logo = path.join(
+    __dirname,
+    "..",
+    "assets",
+    "logo-ever.png"
+);
 function limpiarMarkdown(texto) {
 
     return texto
@@ -46,10 +52,31 @@ function generarPDF(informe) {
     const fecha = new Date().toLocaleDateString("es-PE");
 
     // PORTADA
+doc.image(
+    logo,
+    170,
+    40,
+    {
+        width: 250
+    }
+);
 
-    doc.fontSize(28)
-       .text(
-           "INFORME DE ANÁLISIS DE EXPEDIENTE JUDICIAL",
+doc.moveDown(8);
+  doc.fontSize(24)
+   .text(
+       "INFORME DE ANÁLISIS",
+       {
+           align: "center"
+       }
+   );
+
+doc.fontSize(20)
+   .text(
+       "DE EXPEDIENTE JUDICIAL",
+       {
+           align: "center"
+       }
+   );
            {
                align: "center"
            }
@@ -58,8 +85,15 @@ function generarPDF(informe) {
     doc.moveDown(2);
 
     doc.fontSize(18)
-       .text(
-           "Ever Edinson Abogado",
+   .fillColor("#7A001C")
+   .text(
+       "EVER EDINSON ABOGADO",
+       {
+           align: "center"
+       }
+   );
+
+doc.fillColor("black");
            {
                align: "center"
            }
