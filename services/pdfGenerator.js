@@ -99,39 +99,73 @@ function generarPDF(informe) {
 
     // ENCABEZADO
 
-    doc.fontSize(18)
-       .text(
-           "RESUMEN EJECUTIVO",
-           {
-               align: "center"
-           }
-       );
+   // RESUMEN EJECUTIVO PREMIUM
 
-    doc.moveDown();
+doc.fontSize(24)
+   .text(
+      "RESUMEN EJECUTIVO",
+      {
+         align: "center"
+      }
+   );
 
-    doc.rect(50, 100, 500, 110)
-       .stroke();
+doc.moveDown(2);
 
-    doc.fontSize(12)
-       .text(
-           "Nivel de Riesgo: Según análisis del expediente",
-           70,
-           120
-       );
+doc.rect(50, 140, 500, 140)
+   .stroke();
 
-    doc.text(
-           "Nivel de Litigiosidad: Según análisis del expediente",
-           70,
-           145
-       );
+doc.fontSize(14)
+   .text(
+      "ÍNDICE DE ATRACTIVO",
+      70,
+      170
+   );
 
-    doc.text(
-           "Estado Procesal: Revisar conclusiones del informe",
-           70,
-           170
-       );
+doc.fontSize(20)
+   .text(
+      "78 / 100",
+      350,
+      165
+   );
 
-    doc.moveDown(8);
+doc.fontSize(14)
+   .text(
+      "RIESGO",
+      70,
+      205
+   );
+
+doc.text(
+      "MEDIO",
+      350,
+      205
+   );
+
+doc.text(
+      "LITIGIOSIDAD",
+      70,
+      235
+   );
+
+doc.text(
+      "MEDIA",
+      350,
+      235
+   );
+
+doc.text(
+      "RECOMENDACIÓN",
+      70,
+      265
+   );
+
+doc.text(
+      "CON PRECAUCIONES",
+      250,
+      265
+   );
+
+doc.moveDown(10);
 
     doc.fontSize(16)
        .text(
@@ -152,73 +186,7 @@ doc.fontSize(11)
 
     doc.moveDown(2);
 
-    // RECOMENDACIÓN DESTACADA
-
-    doc.rect(
-        50,
-        doc.y,
-        500,
-        90
-    ).stroke();
-
-    doc.fontSize(14)
-       .text(
-           "RECOMENDACIÓN",
-           70,
-           doc.y + 15
-       );
-
-    doc.fontSize(11)
-       .text(
-           "Se recomienda complementar este informe con una revisión legal especializada antes de participar en cualquier remate judicial.",
-           70,
-           doc.y + 15,
-           {
-               width: 430
-           }
-       );
-
     doc.moveDown(6);
-
-    // AVISO LEGAL
-
-    doc.fontSize(14)
-       .text(
-           "AVISO LEGAL",
-           {
-               underline: true
-           }
-       );
-
-    doc.moveDown();
-
-    doc.fontSize(10)
-       .text(
-           "Este informe ha sido generado mediante inteligencia artificial sobre la base de la información contenida en el expediente proporcionado. Constituye una herramienta de apoyo para la toma de decisiones y no reemplaza el criterio profesional de un abogado ni constituye asesoría legal personalizada."
-       );
-
-    doc.moveDown();
-
-    doc.text(
-           "Para una evaluación integral del expediente, la situación registral y posesoria del inmueble, se recomienda solicitar asesoría especializada."
-       );
-
-    doc.moveDown(2);
-
-    doc.fontSize(11)
-       .text(
-           "WhatsApp: +51 963 337 017",
-           {
-               align: "center"
-           }
-       );
-
-    doc.text(
-           "www.everedinsonabogado.com",
-           {
-               align: "center"
-           }
-       );
 
     doc.end();
 
