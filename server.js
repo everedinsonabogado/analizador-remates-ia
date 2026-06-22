@@ -2,13 +2,11 @@ const express = require("express");
 const cors = require("cors");
 const OpenAI = require("openai");
 const multer = require("multer");
-const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const path = require("path");
-const { v4: uuidv4 } = require("uuid");
 
 const { extraerTextoPDF } = require("./services/pdf");
-
+const { generarPDF } = require("./services/pdfGenerator");
 const upload = multer({
   dest: "uploads/"
 });
@@ -55,7 +53,7 @@ ${texto}
 });
 
 const informe = respuesta.output_text;
-
+const nombreArchivo = generarPDF(informe);
 res.json({
 
     informe: informe,
