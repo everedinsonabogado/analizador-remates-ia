@@ -46,24 +46,30 @@ function generarPDF(informe) {
     // ================================
     // ENCABEZADO GLOBAL (TODAS LAS PÁGINAS)
     // ================================
-    function dibujarEncabezado() {
+function dibujarEncabezado() {
 
-        // Franja borgoña
-        doc.rect(0, 0, 595.28, 60)
-            .fill("#7A001C");
+    // Guardar estado gráfico
+    doc.save();
 
-        // Línea dorada
-        doc.moveTo(0, 60)
-            .lineTo(595.28, 60)
-            .strokeColor("#C9A227")
-            .lineWidth(2)
-            .stroke();
+    // Franja borgoña (SIN afectar flujo)
+    doc.rect(0, 0, 595.28, 60)
+        .fill("#7A001C");
 
-        // Logo
-        if (fs.existsSync(logo)) {
-            doc.image(logo, 40, 10, { width: 80 });
-        }
+    // Línea dorada
+    doc.strokeColor("#C9A227")
+        .lineWidth(2)
+        .moveTo(0, 60)
+        .lineTo(595.28, 60)
+        .stroke();
+
+    // Restaurar estado ANTES de poner imagen/texto
+    doc.restore();
+
+    // Logo seguro
+    if (fs.existsSync(logo)) {
+        doc.image(logo, 40, 10, { width: 80 });
     }
+}
 
     // ================================
     // PIE DE PÁGINA (OPCIONAL PRO)
