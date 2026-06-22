@@ -143,10 +143,12 @@ function generarPDF(informe) {
 
     doc.moveDown();
 
-    doc.fontSize(11)
-       .text(informe, {
-           align: "justify"
-       });
+const informeLimpio = limpiarMarkdown(informe);
+
+doc.fontSize(11)
+   .text(informeLimpio, {
+       align: "justify"
+   });
 
     doc.moveDown(2);
 
