@@ -39,10 +39,48 @@ function generarPDF(informe) {
         size: "A4"
     });
 
+});
     doc.pipe(fs.createWriteStream(rutaPDF));
-
+dibujarHeader();
+dibujarPie();
     const fecha = new Date().toLocaleDateString("es-PE");
+function dibujarHeader() {
 
+    doc.save();
+
+    doc.rect(0, 0, 595.28, 60)
+        .fill("#7A001C");
+
+    doc.strokeColor("#C9A227")
+        .lineWidth(2)
+        .moveTo(0, 60)
+        .lineTo(595.28, 60)
+        .stroke();
+
+    doc.restore();
+
+    if (fs.existsSync(logo)) {
+        doc.image(logo, 40, 10, { width: 80 });
+    }
+}
+
+function dibujarPie() {
+
+    doc.strokeColor("#C9A227")
+        .lineWidth(1)
+        .moveTo(0, 820)
+        .lineTo(595.28, 820)
+        .stroke();
+
+    doc.fontSize(8)
+        .fillColor("#7A001C")
+        .text(
+            "Ever Edinson Abogado - Remates Judiciales",
+            50,
+            830,
+            { align: "center", width: 495 }
+        );
+}
     // =========================
     // ENCABEZADO
     // =========================
@@ -84,10 +122,6 @@ function generarPDF(informe) {
             );
     }
 
-    doc.on("pageAdded", () => {
-        encabezado();
-        pie();
-    });
 
     // =========================
     // PRIMERA PÁGINA
@@ -138,6 +172,8 @@ function generarPDF(informe) {
     // NUEVA PÁGINA
     // =========================
     doc.addPage();
+dibujarHeader();
+dibujarPie();
 
     doc.fontSize(16)
         .fillColor("#000")
