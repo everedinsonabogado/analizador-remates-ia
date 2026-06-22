@@ -51,83 +51,54 @@ function generarPDF(informe) {
 
     const fecha = new Date().toLocaleDateString("es-PE");
 
-    // PORTADA
-doc.image(
-    logo,
-    170,
-    40,
-    {
-        width: 250
-    }
-);
+// PORTADA
+doc.image(logo, 170, 40, { width: 250 });
 
 doc.moveDown(8);
-  doc.fontSize(24)
-   .text(
-       "INFORME DE ANÁLISIS",
-       {
-           align: "center"
-       }
-   );
+
+doc.fontSize(24)
+   .text("INFORME DE ANÁLISIS", {
+       align: "center"
+   });
 
 doc.fontSize(20)
-   .text(
-       "DE EXPEDIENTE JUDICIAL",
-       {
-           align: "center"
-       }
-   );
-           {
-               align: "center"
-           }
-       );
+   .text("DE EXPEDIENTE JUDICIAL", {
+       align: "center"
+   });
 
-    doc.moveDown(2);
+doc.moveDown(2);
 
-    doc.fontSize(18)
+doc.fontSize(18)
    .fillColor("#7A001C")
-   .text(
-       "EVER EDINSON ABOGADO",
-       {
-           align: "center"
-       }
-   );
+   .text("EVER EDINSON ABOGADO", {
+       align: "center"
+   });
 
 doc.fillColor("black");
-           {
-               align: "center"
-           }
-       );
 
-    doc.moveDown();
+doc.moveDown();
 
-    doc.fontSize(14)
-       .text(
-           "Especialista en Remates Judiciales",
-           {
-               align: "center"
-           }
-       );
+doc.fontSize(14)
+   .text("Especialista en Remates Judiciales", {
+       align: "center"
+   });
 
-    doc.moveDown(2);
+doc.moveDown(2);
 
-    doc.fontSize(12)
-       .text(
-           `Fecha de emisión: ${fecha}`,
-           {
-               align: "center"
-           }
-       );
+doc.fontSize(12)
+   .text(`Fecha de emisión: ${fecha}`, {
+       align: "center"
+   });
 
-    doc.moveDown(6);
+doc.moveDown(6);
 
-    doc.fontSize(11)
-       .text(
-           "Informe generado mediante Inteligencia Artificial para apoyar la evaluación de oportunidades de inversión en remates judiciales.",
-           {
-               align: "center"
-           }
-       );
+doc.fontSize(11)
+   .text(
+       "Informe generado mediante Inteligencia Artificial para apoyar la evaluación de oportunidades de inversión en remates judiciales.",
+       {
+           align: "center"
+       }
+   );
 
     doc.addPage();
 
