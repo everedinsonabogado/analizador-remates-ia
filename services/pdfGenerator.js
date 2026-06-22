@@ -98,7 +98,7 @@ function generarPDF(informe) {
     doc.addPage();
 
     // ENCABEZADO
-
+    
    // RESUMEN EJECUTIVO PREMIUM
 
 doc.fontSize(24)
