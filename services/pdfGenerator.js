@@ -2,7 +2,29 @@ const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const path = require("path");
 const { v4: uuidv4 } = require("uuid");
+function limpiarMarkdown(texto) {
 
+    return texto
+
+        .replace(/^---$/gm, "")
+
+        .replace(/^#{1,6}\s*/gm, "")
+
+        .replace(/\*\*/g, "")
+
+        .replace(/\*/g, "")
+
+        .replace(/\|---.*\|/g, "")
+
+        .replace(/^\|/gm, "")
+
+        .replace(/\|$/gm, "")
+
+        .replace(/Ø=Üò/g, "")
+
+        .trim();
+
+}
 function generarPDF(informe) {
 
     const nombreArchivo = uuidv4() + ".pdf";
