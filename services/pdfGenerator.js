@@ -50,56 +50,66 @@ function generarPDF(informe) {
     doc.pipe(fs.createWriteStream(rutaPDF));
 
     const fecha = new Date().toLocaleDateString("es-PE");
+// FRANJA SUPERIOR BORGOÑA
+doc.rect(0, 0, 595.28, 60)
+   .fill("#7A001C");
 
-// PORTADA
-doc.image(logo, 170, 40, { width: 250 });
+// LÍNEA DORADA
+doc
+  .moveTo(0, 60)
+  .lineTo(595.28, 60)
+  .strokeColor("#C9A227")
+  .lineWidth(2)
+  .stroke();
+    
+doc.moveDown(6);
 
-doc.moveDown(8);
-
-doc.fontSize(24)
+doc.fontSize(26)
+   .fillColor("#7A001C")
    .text("INFORME DE ANÁLISIS", {
        align: "center"
    });
 
-doc.fontSize(20)
+doc.moveDown(0.5);
+
+doc.fontSize(18)
+   .fillColor("#333333")
    .text("DE EXPEDIENTE JUDICIAL", {
        align: "center"
    });
 
 doc.moveDown(2);
 
-doc.fontSize(18)
+doc.fontSize(16)
    .fillColor("#7A001C")
    .text("EVER EDINSON ABOGADO", {
        align: "center"
    });
 
-doc.fillColor("black");
+doc.moveDown(1);
 
-doc.moveDown();
-
-doc.fontSize(14)
+doc.fontSize(12)
+   .fillColor("#555555")
    .text("Especialista en Remates Judiciales", {
        align: "center"
    });
 
 doc.moveDown(2);
 
-doc.fontSize(12)
+doc.fontSize(11)
+   .fillColor("#777777")
    .text(`Fecha de emisión: ${fecha}`, {
        align: "center"
    });
 
-doc.moveDown(6);
+doc.moveDown(5);
 
-doc.fontSize(11)
+doc.fontSize(10)
+   .fillColor("#666666")
    .text(
-       "Informe generado mediante Inteligencia Artificial para apoyar la evaluación de oportunidades de inversión en remates judiciales.",
-       {
-           align: "center"
-       }
+       "Documento elaborado para análisis de inversión en procesos de remates judiciales.",
+       { align: "center" }
    );
-
     doc.addPage();
 
     // ENCABEZADO
