@@ -179,10 +179,59 @@ doc.moveDown(10);
 
 const informeLimpio = limpiarMarkdown(informe);
 
-doc.fontSize(11)
-   .text(informeLimpio, {
-       align: "justify"
-   });
+const lineas = informeLimpio.split("\n");
+
+lineas.forEach(linea => {
+
+    const texto = linea.trim();
+
+    if (!texto) {
+        doc.moveDown(0.5);
+        return;
+    }
+
+    if (
+        texto.includes("RESUMEN EJECUTIVO") ||
+        texto.includes("CALIFICACIÓN GENERAL") ||
+        texto.includes("ÍNDICE DE ATRACTIVO") ||
+        texto.includes("ANÁLISIS PARA INVERSIONISTAS") ||
+        texto.includes("RIESGOS IDENTIFICADOS") ||
+        texto.includes("FORTALEZAS IDENTIFICADAS") ||
+        texto.includes("RECOMENDACIÓN FINAL") ||
+        texto.includes("AVISO LEGAL")
+    ) {
+
+        doc.moveDown();
+
+        doc.rect(
+            50,
+            doc.y,
+            500,
+            25
+        ).stroke();
+
+        doc.fontSize(15)
+           .text(
+               texto,
+               60,
+               doc.y + 7
+           );
+
+        doc.moveDown(2);
+
+    } else {
+
+        doc.fontSize(11)
+           .text(
+               texto,
+               {
+                   align: "justify"
+               }
+           );
+
+    }
+
+});
 
     doc.moveDown(2);
 
