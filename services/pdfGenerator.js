@@ -78,26 +78,24 @@ const doc = new PDFDocument({
 
         doc.rect(
     0,
-    760,
+    800,
     595,
-    30
+    42
         ).fill("#7A001C");
 
         doc.restore();
 
         doc.fillColor("white")
-           .fontSize(9)
-           .text(
-               "www.everedinsonabogado.com",
-               25,
-               770
-           );
-
-        doc.text(
-               "WhatsApp: +51 963 337 017",
-               220,
-               770
-           );
+   .fontSize(9)
+   .text(
+      "www.everedinsonabogado.com   |   WhatsApp: +51 963 337 017",
+      0,
+      813,
+      {
+          width: 595,
+          align: "center"
+      }
+   );
 
         doc.fillColor("black");
 
@@ -186,14 +184,12 @@ doc.y = 100;
            }
        );
 
-    // PÁGINA DEL INFORME
+   // PÁGINA DEL INFORME
 
-    doc.addPage();
+dibujarHeader();
+dibujarPie();
 
-    dibujarHeader();
-    dibujarPie();
-
-    doc.fontSize(18)
+doc.fontSize(18)
        .fillColor("#7A001C")
        .text(
            "INFORME DETALLADO",
@@ -234,7 +230,7 @@ if (doc.y > 700) {
     dibujarHeader();
     dibujarPie();
 
-    doc.y = 100;
+    doc.y = 90;
 
 }
     if (!texto) {
