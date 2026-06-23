@@ -348,7 +348,43 @@ lineas.forEach(linea => {
        );
 
 });
+doc.moveDown(2);
 
+doc.rect(
+    50,
+    doc.y,
+    495,
+    90
+)
+.stroke("#C9A227");
+
+doc.fillColor("#7A001C")
+   .fontSize(15)
+   .text(
+      "¿Desea una evaluación profesional antes de invertir?",
+      70,
+      doc.y + 15,
+      {
+         width: 450,
+         align: "center"
+      }
+   );
+
+doc.fontSize(11)
+   .fillColor("black")
+   .text(
+      "WhatsApp: +51 963 337 017",
+      {
+         align: "center"
+      }
+   );
+
+doc.text(
+      "www.everedinsonabogado.com",
+      {
+         align: "center"
+      }
+   );
     doc.end();
 
     return nombreArchivo;
