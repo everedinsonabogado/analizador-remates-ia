@@ -227,16 +227,16 @@ const titulos = [
 lineas.forEach(linea => {
 
     const texto = linea.trim();
-if (doc.y > 700) {
+// if (doc.y > 700) {
 
-    doc.addPage();
+//     doc.addPage();
 
-    dibujarHeader();
-    dibujarPie();
+//     dibujarHeader();
+//     dibujarPie();
 
-    doc.y = 100;
+//     doc.y = 100;
 
-}
+// }
     if (!texto) {
 
         doc.moveDown(0.5);
