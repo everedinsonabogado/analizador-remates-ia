@@ -84,21 +84,6 @@ function generarPDF(informe) {
 
 };
 
-        doc.strokeColor("#C9A227")
-            .lineWidth(1)
-            .moveTo(0, 820)
-            .lineTo(595.28, 820)
-            .stroke();
-
-        doc.fontSize(8)
-            .fillColor("#7A001C")
-            .text(
-                "Ever Edinson Abogado - Remates Judiciales",
-                50,
-                830,
-                { align: "center", width: 495 }
-            );
-    };
 
     dibujarHeader();
     dibujarPie();
