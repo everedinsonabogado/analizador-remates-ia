@@ -227,6 +227,70 @@ const titulos = [
 lineas.forEach(linea => {
 
     const texto = linea.trim();
+    if (
+    texto === "NO RECOMENDABLE" ||
+    texto === "RECOMENDABLE" ||
+    texto === "RECOMENDABLE CON PRECAUCIONES"
+) {
+
+    doc.moveDown(0.5);
+
+    doc.rect(
+        120,
+        doc.y,
+        300,
+        35
+    )
+    .fill("#7A001C");
+
+    doc.fillColor("white")
+       .fontSize(16)
+       .text(
+           texto,
+           120,
+           doc.y + 10,
+           {
+               width: 300,
+               align: "center"
+           }
+       );
+
+    doc.fillColor("black");
+
+    doc.moveDown(2);
+
+    return;
+}
+    if (/^\d+\s*\/\s*100$/.test(texto)) {
+
+    doc.moveDown(0.5);
+
+    doc.rect(
+        180,
+        doc.y,
+        180,
+        45
+    )
+    .stroke("#C9A227");
+
+    doc.fillColor("#7A001C")
+       .fontSize(22)
+       .text(
+           texto,
+           180,
+           doc.y + 12,
+           {
+               width: 180,
+               align: "center"
+           }
+       );
+
+    doc.fillColor("black");
+
+    doc.moveDown(2);
+
+    return;
+}
 // if (doc.y > 700) {
 
 //     doc.addPage();
