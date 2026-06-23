@@ -136,7 +136,56 @@ doc.fontSize(14)
          align: "center"
       }
    );
+doc.moveDown(4);
 
+doc.rect(
+    80,
+    450,
+    430,
+    170
+)
+.stroke("#C9A227");
+
+doc.fontSize(16)
+   .fillColor("#7A001C")
+   .text(
+      "INFORME EJECUTIVO PARA INVERSIONISTAS",
+      100,
+      480,
+      {
+         width: 390,
+         align: "center"
+      }
+   );
+
+doc.moveDown();
+
+doc.fontSize(12)
+   .fillColor("#000")
+   .text(
+      "La evaluación completa se encuentra en las siguientes páginas.",
+      110,
+      530,
+      {
+         width: 370,
+         align: "center"
+      }
+   );
+    doc.addPage();
+
+dibujarHeader();
+dibujarPie();
+
+doc.fontSize(16)
+   .fillColor("#000")
+   .text(
+      "INFORME DETALLADO",
+      {
+         align: "center"
+      }
+   );
+
+doc.moveDown(2);
 doc.fontSize(11)
    .fillColor("#555")
    .text(
@@ -148,40 +197,6 @@ doc.fontSize(11)
          align: "center"
       }
    );
-// EXTRAER DATOS PRINCIPALES
-
-const atractivo =
-    informe.match(/(\d+)\s*\/\s*100/)?.[0] ||
-    "N/D";
-
-let riesgo = "N/D";
-
-const riesgoMatch =
-    informe.match(
-        /NIVEL DE RIESGO[\s\S]*?(BAJO|MEDIO|ALTO)/i
-    );
-
-if (riesgoMatch)
-    riesgo = riesgoMatch[1];
-
-let recomendacion = "N/D";
-
-const recomendacionMatch =
-    informe.match(
-        /RECOMENDACIÓN FINAL[\s\S]*?(RECOMENDABLE CON PRECAUCIONES|RECOMENDABLE|NO RECOMENDABLE)/i
-    );
-
-if (recomendacionMatch)
-    recomendacion = recomendacionMatch[1];
-
-let estrellas = "N/D";
-
-const estrellasMatch =
-    informe.match(/⭐+/);
-
-if (estrellasMatch)
-    estrellas = estrellasMatch[0];
-
 
 // NUEVA PÁGINA EJECUTIVA
 
