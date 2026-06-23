@@ -30,7 +30,8 @@ function generarPDF(informe) {
 
 const doc = new PDFDocument({
     margin: 60,
-    size: "A4"
+    size: "A4",
+    bufferPages: true
 });
 
     doc.pipe(fs.createWriteStream(rutaPDF));
@@ -183,14 +184,10 @@ doc.y = 100;
            }
        );
 
-  // PÁGINA DEL INFORME
-
-doc.addPage();
+   // PÁGINA DEL INFORME
 
 dibujarHeader();
 dibujarPie();
-
-doc.y = 90;
 
 doc.fontSize(18)
        .fillColor("#7A001C")
@@ -226,7 +223,16 @@ const titulos = [
 lineas.forEach(linea => {
 
     const texto = linea.trim();
+if (doc.y > 700) {
 
+    doc.addPage();
+
+    dibujarHeader();
+    dibujarPie();
+
+    doc.y = 90;
+
+}
     if (!texto) {
 
         doc.moveDown(0.5);
