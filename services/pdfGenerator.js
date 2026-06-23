@@ -36,13 +36,13 @@ function generarPDF(informe) {
 
         doc.save();
 
-        doc.rect(0, 0, 595.28, 60)
+        doc.rect(0, 0, 595.28, 75)
             .fill("#7A001C");
 
         doc.strokeColor("#C9A227")
             .lineWidth(2)
             .moveTo(0, 60)
-            .lineTo(595.28, 60)
+            .lineTo(595.28, 75)
             .stroke();
 
         doc.restore();
@@ -53,6 +53,36 @@ function generarPDF(informe) {
     };
 
     const dibujarPie = () => {
+
+    doc.save();
+
+    doc.rect(
+        0,
+        785,
+        595,
+        35
+    )
+    .fill("#7A001C");
+
+    doc.restore();
+
+    doc.fillColor("white")
+       .fontSize(9)
+       .text(
+           "www.everedinsonabogado.com",
+           25,
+           798
+       );
+
+    doc.text(
+           "WhatsApp: +51 963 337 017",
+           220,
+           798
+       );
+
+    doc.fillColor("black");
+
+};
 
         doc.strokeColor("#C9A227")
             .lineWidth(1)
@@ -100,7 +130,39 @@ function generarPDF(informe) {
     doc.fontSize(11)
         .fillColor("#777")
         .text(`Fecha de emisión: ${fecha}`, { align: "center" });
+doc.moveDown(4);
 
+doc.rect(
+    120,
+    300,
+    350,
+    120
+)
+.stroke("#C9A227");
+
+doc.fontSize(14)
+   .fillColor("#7A001C")
+   .text(
+      "INFORME PROFESIONAL PARA INVERSIONISTAS",
+      140,
+      330,
+      {
+         width: 310,
+         align: "center"
+      }
+   );
+
+doc.fontSize(11)
+   .fillColor("#555")
+   .text(
+      `Emitido: ${fecha}`,
+      140,
+      370,
+      {
+         width: 310,
+         align: "center"
+      }
+   );
 // EXTRAER DATOS PRINCIPALES
 
 const atractivo =
