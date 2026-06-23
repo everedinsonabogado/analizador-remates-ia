@@ -21,7 +21,12 @@ function generarPDF(informe) {
 
     const nombreArchivo = uuidv4() + ".pdf";
 
-    const rutaPDF = path.join(__dirname, "..", "pdf", nombreArchivo);
+    const rutaPDF = path.join(
+        __dirname,
+        "..",
+        "pdf",
+        nombreArchivo
+    );
 
     const doc = new PDFDocument({
         margin: 50,
@@ -36,312 +41,167 @@ function generarPDF(informe) {
 
         doc.save();
 
-        doc.rect(0, 0, 595.28, 75)
-            .fill("#7A001C");
+        doc.rect(
+            0,
+            0,
+            595.28,
+            75
+        ).fill("#7A001C");
 
-        doc.strokeColor("#C9A227")
-            .lineWidth(2)
-            .moveTo(0, 60)
-            .lineTo(595.28, 75)
-            .stroke();
+        doc.rect(
+            0,
+            70,
+            595.28,
+            5
+        ).fill("#C9A227");
 
         doc.restore();
 
         if (fs.existsSync(logo)) {
-            doc.image(logo, 40, 10, { width: 80 });
+
+            doc.image(
+                logo,
+                40,
+                10,
+                {
+                    width: 80
+                }
+            );
+
         }
     };
 
     const dibujarPie = () => {
 
-    doc.save();
+        doc.save();
 
-    doc.rect(
-        0,
-        785,
-        595,
-        35
-    )
-    .fill("#7A001C");
+        doc.rect(
+            0,
+            785,
+            595,
+            35
+        ).fill("#7A001C");
 
-    doc.restore();
+        doc.restore();
 
-    doc.fillColor("white")
-       .fontSize(9)
-       .text(
-           "www.everedinsonabogado.com",
-           25,
-           798
-       );
+        doc.fillColor("white")
+           .fontSize(9)
+           .text(
+               "www.everedinsonabogado.com",
+               25,
+               798
+           );
 
-    doc.text(
-           "WhatsApp: +51 963 337 017",
-           220,
-           798
-       );
+        doc.text(
+               "WhatsApp: +51 963 337 017",
+               220,
+               798
+           );
 
-    doc.fillColor("black");
+        doc.fillColor("black");
 
-};
+    };
 
+    // PORTADA
 
     dibujarHeader();
     dibujarPie();
 
-    doc.fontSize(26)
-        .fillColor("#7A001C")
-        .text("INFORME DE ANÁLISIS", { align: "center" });
+    doc.moveDown(3);
 
-    doc.moveDown(1);
+    doc.fontSize(26)
+       .fillColor("#7A001C")
+       .text(
+           "INFORME DE ANÁLISIS",
+           {
+               align: "center"
+           }
+       );
+
+    doc.moveDown();
 
     doc.fontSize(18)
-        .fillColor("#333")
-        .text("DE EXPEDIENTE JUDICIAL", { align: "center" });
+       .fillColor("#333")
+       .text(
+           "DE EXPEDIENTE JUDICIAL",
+           {
+               align: "center"
+           }
+       );
 
     doc.moveDown(2);
 
     doc.fontSize(16)
-        .fillColor("#7A001C")
-        .text("EVER EDINSON ABOGADO", { align: "center" });
+       .fillColor("#7A001C")
+       .text(
+           "EVER EDINSON ABOGADO",
+           {
+               align: "center"
+           }
+       );
 
-    doc.moveDown(1);
+    doc.moveDown();
 
     doc.fontSize(12)
-        .fillColor("#555")
-        .text("Especialista en Remates Judiciales", { align: "center" });
+       .fillColor("#555")
+       .text(
+           "Especialista en Remates Judiciales",
+           {
+               align: "center"
+           }
+       );
 
     doc.moveDown(2);
 
+    doc.rect(
+        120,
+        280,
+        350,
+        140
+    )
+    .stroke("#C9A227");
+
+    doc.fontSize(14)
+       .fillColor("#7A001C")
+       .text(
+           "INFORME PROFESIONAL PARA INVERSIONISTAS",
+           140,
+           320,
+           {
+               width: 310,
+               align: "center"
+           }
+       );
+
     doc.fontSize(11)
-        .fillColor("#777")
-        .text(`Fecha de emisión: ${fecha}`, { align: "center" });
-doc.moveDown(4);
+       .fillColor("#555")
+       .text(
+           `Fecha de emisión: ${fecha}`,
+           140,
+           370,
+           {
+               width: 310,
+               align: "center"
+           }
+       );
 
-doc.rect(
-    120,
-    300,
-    350,
-    120
-)
-.stroke("#C9A227");
+    // PÁGINA DEL INFORME
 
-doc.fontSize(14)
-   .fillColor("#7A001C")
-   .text(
-      "INFORME PROFESIONAL PARA INVERSIONISTAS",
-      140,
-      330,
-      {
-         width: 310,
-         align: "center"
-      }
-   );
-doc.moveDown(4);
-
-doc.rect(
-    80,
-    450,
-    430,
-    170
-)
-.stroke("#C9A227");
-
-doc.fontSize(16)
-   .fillColor("#7A001C")
-   .text(
-      "INFORME EJECUTIVO PARA INVERSIONISTAS",
-      100,
-      480,
-      {
-         width: 390,
-         align: "center"
-      }
-   );
-
-doc.moveDown();
-
-doc.fontSize(12)
-   .fillColor("#000")
-   .text(
-      "La evaluación completa se encuentra en las siguientes páginas.",
-      110,
-      530,
-      {
-         width: 370,
-         align: "center"
-      }
-   );
     doc.addPage();
 
-dibujarHeader();
-dibujarPie();
+    dibujarHeader();
+    dibujarPie();
 
-doc.fontSize(16)
-   .fillColor("#000")
-   .text(
-      "INFORME DETALLADO",
-      {
-         align: "center"
-      }
-   );
+    doc.fontSize(18)
+       .fillColor("#7A001C")
+       .text(
+           "INFORME DETALLADO",
+           {
+               align: "center"
+           }
+       );
 
-doc.moveDown(2);
-doc.fontSize(11)
-   .fillColor("#555")
-   .text(
-      `Emitido: ${fecha}`,
-      140,
-      370,
-      {
-         width: 310,
-         align: "center"
-      }
-   );
-
-// NUEVA PÁGINA EJECUTIVA
-
-doc.addPage();
-
-dibujarHeader();
-dibujarPie();
-
-doc.fontSize(22)
-   .fillColor("#7A001C")
-   .text(
-       "RESUMEN EJECUTIVO",
-       {
-           align: "center"
-       }
-   );
-
-
-// TARJETA 1
-
-doc.rect(
-    50,
-    150,
-    220,
-    100
-).stroke("#C9A227");
-
-doc.fontSize(12)
-   .fillColor("#7A001C")
-   .text(
-       "CALIFICACIÓN GENERAL",
-       70,
-       170
-   );
-
-doc.fontSize(24)
-   .fillColor("#000")
-   .text(
-       estrellas,
-       115,
-       205
-   );
-
-
-// TARJETA 2
-
-doc.rect(
-    320,
-    150,
-    220,
-    100
-).stroke("#C9A227");
-
-doc.fontSize(12)
-   .fillColor("#7A001C")
-   .text(
-       "ÍNDICE DE ATRACTIVO",
-       340,
-       170
-   );
-
-doc.fontSize(22)
-   .fillColor("#000")
-   .text(
-       atractivo,
-       390,
-       205
-   );
-
-
-// TARJETA 3
-
-doc.rect(
-    50,
-    290,
-    220,
-    100
-).stroke("#C9A227");
-
-doc.fontSize(12)
-   .fillColor("#7A001C")
-   .text(
-       "NIVEL DE RIESGO",
-       85,
-       315
-   );
-
-doc.fontSize(20)
-   .fillColor("#000")
-   .text(
-       riesgo,
-       120,
-       350
-   );
-
-
-// TARJETA 4
-
-doc.rect(
-    320,
-    290,
-    220,
-    100
-).stroke("#C9A227");
-
-doc.fontSize(12)
-   .fillColor("#7A001C")
-   .text(
-       "RECOMENDACIÓN",
-       365,
-       315
-   );
-
-doc.fontSize(13)
-   .fillColor("#000")
-   .text(
-       recomendacion,
-       340,
-       350,
-       {
-           width: 180,
-           align: "center"
-       }
-   );
-
-
-// NUEVA PÁGINA DEL INFORME
-
-doc.addPage();
-
-dibujarHeader();
-dibujarPie();
-
-doc.fontSize(16)
-   .fillColor("#000")
-   .text(
-       "INFORME DETALLADO",
-       {
-           align: "center"
-       }
-   );
-
-doc.moveDown();
-
-    doc.moveDown();
+    doc.moveDown(2);
 
     const lineas = limpiarMarkdown(informe).split("\n");
 
@@ -355,13 +215,22 @@ doc.moveDown();
         }
 
         doc.fontSize(11)
-            .fillColor("#000")
-            .text(texto, { align: "justify" });
+           .fillColor("#000")
+           .text(
+               texto,
+               {
+                   align: "justify"
+               }
+           );
+
     });
 
     doc.end();
 
     return nombreArchivo;
+
 }
 
-module.exports = { generarPDF };
+module.exports = {
+    generarPDF
+};
