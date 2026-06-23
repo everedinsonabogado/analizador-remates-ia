@@ -101,13 +101,183 @@ function generarPDF(informe) {
         .fillColor("#777")
         .text(`Fecha de emisión: ${fecha}`, { align: "center" });
 
-    doc.addPage();
-    dibujarHeader();
-    dibujarPie();
+// EXTRAER DATOS PRINCIPALES
 
-    doc.fontSize(16)
-        .fillColor("#000")
-        .text("INFORME DETALLADO", { align: "center" });
+const atractivo =
+    informe.match(/(\d+)\s*\/\s*100/)?.[0] ||
+    "N/D";
+
+let riesgo = "N/D";
+
+const riesgoMatch =
+    informe.match(
+        /NIVEL DE RIESGO[\s\S]*?(BAJO|MEDIO|ALTO)/i
+    );
+
+if (riesgoMatch)
+    riesgo = riesgoMatch[1];
+
+let recomendacion = "N/D";
+
+const recomendacionMatch =
+    informe.match(
+        /RECOMENDACIÓN FINAL[\s\S]*?(RECOMENDABLE CON PRECAUCIONES|RECOMENDABLE|NO RECOMENDABLE)/i
+    );
+
+if (recomendacionMatch)
+    recomendacion = recomendacionMatch[1];
+
+let estrellas = "N/D";
+
+const estrellasMatch =
+    informe.match(/⭐+/);
+
+if (estrellasMatch)
+    estrellas = estrellasMatch[0];
+
+
+// NUEVA PÁGINA EJECUTIVA
+
+doc.addPage();
+
+dibujarHeader();
+dibujarPie();
+
+doc.fontSize(22)
+   .fillColor("#7A001C")
+   .text(
+       "RESUMEN EJECUTIVO",
+       {
+           align: "center"
+       }
+   );
+
+
+// TARJETA 1
+
+doc.rect(
+    50,
+    150,
+    220,
+    100
+).stroke("#C9A227");
+
+doc.fontSize(12)
+   .fillColor("#7A001C")
+   .text(
+       "CALIFICACIÓN GENERAL",
+       70,
+       170
+   );
+
+doc.fontSize(24)
+   .fillColor("#000")
+   .text(
+       estrellas,
+       115,
+       205
+   );
+
+
+// TARJETA 2
+
+doc.rect(
+    320,
+    150,
+    220,
+    100
+).stroke("#C9A227");
+
+doc.fontSize(12)
+   .fillColor("#7A001C")
+   .text(
+       "ÍNDICE DE ATRACTIVO",
+       340,
+       170
+   );
+
+doc.fontSize(22)
+   .fillColor("#000")
+   .text(
+       atractivo,
+       390,
+       205
+   );
+
+
+// TARJETA 3
+
+doc.rect(
+    50,
+    290,
+    220,
+    100
+).stroke("#C9A227");
+
+doc.fontSize(12)
+   .fillColor("#7A001C")
+   .text(
+       "NIVEL DE RIESGO",
+       85,
+       315
+   );
+
+doc.fontSize(20)
+   .fillColor("#000")
+   .text(
+       riesgo,
+       120,
+       350
+   );
+
+
+// TARJETA 4
+
+doc.rect(
+    320,
+    290,
+    220,
+    100
+).stroke("#C9A227");
+
+doc.fontSize(12)
+   .fillColor("#7A001C")
+   .text(
+       "RECOMENDACIÓN",
+       365,
+       315
+   );
+
+doc.fontSize(13)
+   .fillColor("#000")
+   .text(
+       recomendacion,
+       340,
+       350,
+       {
+           width: 180,
+           align: "center"
+       }
+   );
+
+
+// NUEVA PÁGINA DEL INFORME
+
+doc.addPage();
+
+dibujarHeader();
+dibujarPie();
+
+doc.fontSize(16)
+   .fillColor("#000")
+   .text(
+       "INFORME DETALLADO",
+       {
+           align: "center"
+       }
+   );
+
+doc.moveDown();
 
     doc.moveDown();
 
