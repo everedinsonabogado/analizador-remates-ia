@@ -205,25 +205,75 @@ function generarPDF(informe) {
 
     const lineas = limpiarMarkdown(informe).split("\n");
 
-    lineas.forEach(linea => {
+const titulos = [
 
-        const texto = linea.trim();
+    "RESUMEN EJECUTIVO",
+    "CALIFICACIÓN GENERAL",
+    "ÍNDICE DE ATRACTIVO PARA INVERSIONISTAS",
+    "NIVEL DE RIESGO",
+    "NIVEL DE LITIGIOSIDAD",
+    "FICHA DEL EXPEDIENTE",
+    "CRONOLOGÍA PROCESAL",
+    "INCIDENTES PROCESALES DETECTADOS",
+    "RIESGOS IDENTIFICADOS",
+    "PROYECCIÓN DEL PROCEDIMIENTO",
+    "ANÁLISIS PARA INVERSIONISTAS",
+    "RECOMENDACIÓN FINAL",
+    "AVISO LEGAL"
 
-        if (!texto) {
-            doc.moveDown(0.5);
-            return;
-        }
+];
 
-        doc.fontSize(11)
-           .fillColor("#000")
+lineas.forEach(linea => {
+
+    const texto = linea.trim();
+
+    if (!texto) {
+
+        doc.moveDown(0.5);
+        return;
+
+    }
+
+    if (titulos.includes(texto.toUpperCase())) {
+
+        doc.moveDown();
+
+        const y = doc.y;
+
+        doc.rect(
+            50,
+            y,
+            495,
+            24
+        )
+        .fill("#7A001C");
+
+        doc.fillColor("white")
+           .fontSize(12)
            .text(
                texto,
-               {
-                   align: "justify"
-               }
+               60,
+               y + 6
            );
 
-    });
+        doc.moveDown(2);
+
+        doc.fillColor("black");
+
+        return;
+
+    }
+
+    doc.fontSize(11)
+       .fillColor("#000")
+       .text(
+           texto,
+           {
+               align: "justify"
+           }
+       );
+
+});
 
     doc.end();
 
