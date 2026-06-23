@@ -28,10 +28,11 @@ function generarPDF(informe) {
         nombreArchivo
     );
 
-    const doc = new PDFDocument({
-        margin: 50,
-        size: "A4"
-    });
+const doc = new PDFDocument({
+    margin: 60,
+    size: "A4",
+    bufferPages: true
+});
 
     doc.pipe(fs.createWriteStream(rutaPDF));
 
@@ -76,10 +77,10 @@ function generarPDF(informe) {
         doc.save();
 
         doc.rect(
-            0,
-            785,
-            595,
-            35
+    0,
+    760,
+    595,
+    30
         ).fill("#7A001C");
 
         doc.restore();
@@ -89,13 +90,13 @@ function generarPDF(informe) {
            .text(
                "www.everedinsonabogado.com",
                25,
-               798
+               770
            );
 
         doc.text(
                "WhatsApp: +51 963 337 017",
                220,
-               798
+               770
            );
 
         doc.fillColor("black");
@@ -106,7 +107,7 @@ function generarPDF(informe) {
 
     dibujarHeader();
     dibujarPie();
-
+doc.y = 100;
     doc.moveDown(3);
 
     doc.fontSize(26)
@@ -226,7 +227,16 @@ const titulos = [
 lineas.forEach(linea => {
 
     const texto = linea.trim();
+if (doc.y > 700) {
 
+    doc.addPage();
+
+    dibujarHeader();
+    dibujarPie();
+
+    doc.y = 100;
+
+}
     if (!texto) {
 
         doc.moveDown(0.5);
