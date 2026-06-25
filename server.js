@@ -7,6 +7,7 @@ const path = require("path");
 
 const { extraerTextoPDF } = require("./services/pdf");
 const { generarPDF } = require("./services/pdfGenerator");
+const { crearPreferencia } = require("./mercadoPago");
 const upload = multer({
   dest: "uploads/"
 });
@@ -111,6 +112,27 @@ app.post("/analizar", async (req, res) => {
 
 });
 
+app.post("/crear-preferencia", async (req, res) => {
+
+  try {
+
+    const urlPago = await crearPreferencia();
+
+    res.json({
+      url: urlPago
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
