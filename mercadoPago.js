@@ -4,7 +4,7 @@ const client = new MercadoPagoConfig({
     accessToken: process.env.MP_ACCESS_TOKEN
 });
 
-async function crearPreferencia() {
+async function crearPreferencia(expedienteId) {
 
     const preference = new Preference(client);
 
@@ -12,18 +12,20 @@ async function crearPreferencia() {
 
         body: {
 
-            items: [
+    external_reference: expedienteId,
 
-                {
-                    title: "Análisis IA de Expediente Judicial",
-                    quantity: 1,
-                    currency_id: "PEN",
-                    unit_price: 19
-                }
+    items: [
 
-            ]
-
+        {
+            title: "Análisis IA de Expediente Judicial",
+            quantity: 1,
+            currency_id: "PEN",
+            unit_price: 19
         }
+
+    ]
+
+}
 
     });
 
