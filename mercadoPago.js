@@ -13,7 +13,9 @@ async function crearPreferencia(expedienteId) {
         body: {
 
             external_reference: expedienteId,
+notification_url: "https://analizador-remates-ia-1.onrender.com/webhook",
 
+binary_mode: true,
             back_urls: {
 
                 success: "https://www.everedinsonabogado.com/2026/06/analiza-tu-expediente-judicial-antes-de.html?pagado=1",
