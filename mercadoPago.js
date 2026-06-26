@@ -10,11 +10,39 @@ async function crearPreferencia(expedienteId) {
 
     const respuesta = await preference.create({
 
-        body: {
+body: {
 
     external_reference: expedienteId,
 
+    back_urls: {
+
+        success: "https://www.everedinsonabogado.com/2026/06/analiza-tu-expediente-judicial-antes-de.html?pagado=1",
+
+        failure: "https://www.everedinsonabogado.com/2026/06/analiza-tu-expediente-judicial-antes-de.html?error=1",
+
+        pending: "https://www.everedinsonabogado.com/2026/06/analiza-tu-expediente-judicial-antes-de.html?pendiente=1"
+
+    },
+
+    auto_return: "approved",
+
     items: [
+
+        {
+
+            title: "Análisis IA de Expediente Judicial",
+
+            quantity: 1,
+
+            currency_id: "PEN",
+
+            unit_price: 19
+
+        }
+
+    ]
+
+}
 
         {
             title: "Análisis IA de Expediente Judicial",
