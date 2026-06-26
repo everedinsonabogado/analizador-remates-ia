@@ -4,6 +4,7 @@ const OpenAI = require("openai");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
 const { extraerTextoPDF } = require("./services/pdf");
 const { generarPDF } = require("./services/pdfGenerator");
@@ -120,6 +121,37 @@ app.post("/crear-preferencia", async (req, res) => {
 
     res.json({
       url: urlPago
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
+app.post("/guardar-expediente", upload.single("pdf"), async (req, res) => {
+
+  try {
+
+    const id = uuidv4();
+
+    const extension = path.extname(req.file.originalname) || ".pdf";
+
+    const nuevoNombre = id + extension;
+
+    fs.renameSync(
+      req.file.path,
+      path.join(__dirname, "uploads", nuevoNombre)
+    );
+
+    res.json({
+      ok: true,
+      id: id
     });
 
   } catch (error) {
