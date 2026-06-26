@@ -166,6 +166,38 @@ app.post("/guardar-expediente", upload.single("pdf"), async (req, res) => {
   }
 
 });
+app.post("/procesar-expediente", async (req, res) => {
+
+  try {
+
+    const expedienteId = req.body.expedienteId;
+
+    const rutaPDF = path.join(__dirname, "uploads", expedienteId + ".pdf");
+
+    if (!fs.existsSync(rutaPDF)) {
+      return res.status(404).json({
+        error: "Expediente no encontrado."
+      });
+    }
+
+    const resultado = await procesarExpediente(rutaPDF);
+
+    res.json({
+      informe: resultado.informe,
+      pdf: "https://analizador-remates-ia-1.onrender.com/pdf/" + resultado.nombreArchivo
+    });
+
+  } catch (error) {
+
+    console.error(error);
+
+    res.status(500).json({
+      error: error.message
+    });
+
+  }
+
+});
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
