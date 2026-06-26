@@ -8,6 +8,7 @@ const { v4: uuidv4 } = require("uuid");
 
 const { extraerTextoPDF } = require("./services/pdf");
 const { generarPDF } = require("./services/pdfGenerator");
+const { procesarExpediente } = require("./services/procesarExpediente");
 const { crearPreferencia } = require("./mercadoPago");
 const upload = multer({
   dest: "uploads/"
