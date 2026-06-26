@@ -117,7 +117,7 @@ app.post("/crear-preferencia", async (req, res) => {
 
   try {
 
-    const urlPago = await crearPreferencia();
+    const urlPago = await crearPreferencia(req.body.expedienteId);
 
     res.json({
       url: urlPago
